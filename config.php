@@ -1,5 +1,8 @@
 <?php
-require(__DIR__.'/dotenv/Dotenv.php');
+require(__DIR__.'/inc/dotenv/Exception/ExceptionInterface.php');
+require(__DIR__.'/inc/dotenv/Exception/InvalidPathException.php');
+require(__DIR__.'/inc/dotenv/Loader.php');
+require(__DIR__.'/inc/dotenv/Dotenv.php');
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
