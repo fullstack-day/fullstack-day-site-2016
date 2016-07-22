@@ -48,6 +48,12 @@ input, textarea, select, label, small {
   display: list-item;
 }
 
+
+
+.speaker-list li .speaker .speaker-meta {
+  min-height: 170px;
+}
+
 footer .logo img {
   width: 100%;
 }
@@ -56,6 +62,13 @@ footer .logo img {
 /* 
   And some media queries for you
 */
+
+@media screen and (max-width: 1200px) {
+  .speaker-list li .speaker .media .info-media {
+    min-height: 300px;
+  }
+}
+
 @media screen and (max-width: 1024px) {
 
 }
