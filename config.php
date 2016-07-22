@@ -1,14 +1,17 @@
 <?php
+require(__DIR__.'/dotenv/Dotenv.php');
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
 /* =====================================================
 Subscribe Options
 ===================================================== */
 
 // Mailchimp API KEY
-$Mailchimp_API_Key = '123456789209318070asiuzi8134809-us1';
+$Mailchimp_API_Key = $_ENV['MC_API'];
 
 // Mailchimp List ID
-$Mailchimp_List_ID = '09318070asa';
+$Mailchimp_List_ID = $_ENV['MC_LID'];
 
 // Mailchimp Double Opt In
 $Mailchimp_Double_OptIn = false;
@@ -21,8 +24,8 @@ Contact Form
 ===================================================== */
 
 // Email address
-$Email_Address = 'youremailaddress@gmail.com';
+$Email_Address = 'info@ticowebmedia.cr';
 
 // Subject for Contact Form
-$Contact_Form_Subject = 'Contact Form';
+$Contact_Form_Subject = 'Fullstack Day Contact Form';
 ?>
