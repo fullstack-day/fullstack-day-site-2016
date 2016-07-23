@@ -317,7 +317,7 @@
 			$('form.registration-form button[type="submit"]').on('click', function(event) {
 
 				var that = $(this),
-					form = that.parents('form'),
+					form = $('form.registration-form'),
 					error = false,
 					Serialize_Form = that.parents('form').serialize(),
 					required = form.find('.required'),
@@ -365,7 +365,7 @@
 			$('form.contact-form button[type="submit"]').on('click', function(event) {
 
 				var that = $(this),
-					form = that.parents('form'),
+					form = $('form.contact-form'),
 					error = false,
 					Serialize_Form = that.parents('form').serialize(),
 					required = form.find('.required'),
