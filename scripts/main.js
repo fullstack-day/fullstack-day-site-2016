@@ -413,14 +413,14 @@
 			$('form.subscribe button[type="submit"]').on('click', function(event) {
 
 				var that = $(this),
-					form = that.parents('form'),
+					form = $('form.subscribe'),
 					error = false,
-					Serialize_Form = that.parents('form').serialize(),
+					Serialize_Form = form.serialize(),
 					required = form.find('.required');
 
 				required.removeClass('error');
 				required.each(function() {
-					var email = that.val(),
+					var email = required.val(),
 						Pattern = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 					if( !Pattern.test(email) ) {
 						that.addClass('error');
