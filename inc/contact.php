@@ -11,7 +11,7 @@ $TO_EMAIL = $Email_Address;
 $SUBJECT = $Contact_Form_Subject;
 
 
-if( !isset($_POST['name']) || !isset($_POST['email']) || !isset($_POST['message']) ) {
+if( !isset($_POST['contact-name']) || !isset($_POST['contact-email']) || !isset($_POST['contact-message']) ) {
     $output = json_encode(
         array(
             'type'=>'error',
@@ -21,10 +21,10 @@ if( !isset($_POST['name']) || !isset($_POST['email']) || !isset($_POST['message'
     die($output);
 }
 
-$NAME     = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
-$EMAIL    = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-$SUBJECT_FORM  = filter_var($_POST["subject"], FILTER_SANITIZE_STRING);
-$MESSAGE  = filter_var($_POST["message"], FILTER_SANITIZE_STRING);
+$NAME     = filter_var($_POST['contact-name'], FILTER_SANITIZE_STRING);
+$EMAIL    = filter_var($_POST['contact-email'], FILTER_SANITIZE_EMAIL);
+$SUBJECT_FORM  = filter_var($_POST['contact-subject'], FILTER_SANITIZE_STRING);
+$MESSAGE  = filter_var($_POST['contact-message'], FILTER_SANITIZE_STRING);
 
 
 // Validate email

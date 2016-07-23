@@ -11,7 +11,7 @@ $TO_EMAIL = $Email_Address;
 $SUBJECT = $Contact_Form_Subject;
 
 
-if( !isset($_POST['registration-name']) || !isset($_POST['registration-email']) || !isset($_POST['registration-phone']) ) {
+if( !isset($_POST['registration-name']) || !isset($_POST['registration-email']) || !isset($_POST['registration-message']) ) {
     $output = json_encode(
         array(
             'type'=>'error',
@@ -21,19 +21,19 @@ if( !isset($_POST['registration-name']) || !isset($_POST['registration-email']) 
     die($output);
 }
 
-$name     = filter_var($_POST["registration-name"], FILTER_SANITIZE_STRING);
-$email    = filter_var($_POST["registration-email"], FILTER_SANITIZE_EMAIL);
-$phone  = filter_var($_POST["registration-phone"], FILTER_SANITIZE_STRING);
-$type  = filter_var($_POST["registration-type"], FILTER_SANITIZE_STRING);
+$NAME     = filter_var($_POST['registration-name'], FILTER_SANITIZE_STRING);
+$EMAIL    = filter_var($_POST['registration-email'], FILTER_SANITIZE_EMAIL);
+$SUBJECT_FORM  = filter_var($_POST['registration-subject'], FILTER_SANITIZE_STRING);
+$MESSAGE  = filter_var($_POST['registration-message'], FILTER_SANITIZE_STRING);
 
 
 // Validate email
-if( !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
+if( !filter_var($EMAIL, FILTER_VALIDATE_EMAIL) ) {
     $output = json_encode(array('type'=>'error', 'text' => 'Please enter a valid email!'));
     die($output);
 }
 
-$body = 'Name: ' . $name . "\n\n" . 'Email address: ' . $email . "\n\n" . 'Phone: ' . $phone . "\n\n" . 'Registration Type: ' . $type;
+$body = 'Name: ' . $NAME . "\n\n" . 'Email address: ' . $EMAIL . "\n\n" . 'Subject: ' . $SUBJECT_FORM . "\n\n" . 'Message: ' . $MESSAGE;
 
 $headers = array(
     'MIME-Version: 1.0',
@@ -41,8 +41,8 @@ $headers = array(
     'Content-Transfer-Encoding: 7bit',
     'Date: ' . date('r', $_SERVER['REQUEST_TIME']),
     'Message-ID: <' . $_SERVER['REQUEST_TIME'] . md5($_SERVER['REQUEST_TIME']) . '@' . $_SERVER['SERVER_NAME'] . '>',
-    'From: ' . mb_encode_mimeheader($name) . '" <' . $TO_EMAIL . '>',
-    'Reply-To: ' . $email,
+    'From: ' . mb_encode_mimeheader($NAME) . '" <' . $TO_EMAIL . '>',
+    'Reply-To: ' . $EMAIL,
     'X-Mailer: PHP v' . phpversion(),
     'X-Originating-IP: ' . $_SERVER['SERVER_ADDR'],
 );

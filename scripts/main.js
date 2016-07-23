@@ -313,26 +313,19 @@
 	},
 	Forms = {
 		Registration: function() {
-			PRICE.each(function() {
-				var that = $(this),
-					RegistrationForm = $('.registration-form');
-				that.on('click', function(event) {
-					event.preventDefault();
-					RegistrationForm.addClass('active');
-				});
-				$('.registration-wrapper .close').on('click', function(event) {
-					event.preventDefault();
-					RegistrationForm.removeClass('active');
-				});
-			});
-
-			$('.registration-form form button[type="submit"]').on('click', function(event) {
+			
+			$('form.registration-form button[type="submit"]').on('click', function(event) {
 
 				var that = $(this),
 					form = that.parents('form'),
 					error = false,
 					Serialize_Form = that.parents('form').serialize(),
-					required = form.find('.required');
+					required = form.find('.required'),
+					captcha = form.find('.captcha').attr('data-math'),
+					captcha_Split = captcha.split(' '),
+					captcha_First = parseInt(captcha_Split[0], 10),
+					captcha_Second = parseInt(captcha_Split[2], 10),
+					captcha_Equal = captcha_First + captcha_Second;
 
 				required.removeClass('error');
 				required.each(function() {
@@ -348,6 +341,10 @@
 							error = true;
 						}
 					}
+					if( form.find('.captcha').val() != captcha_Equal ) {
+						form.find('.captcha').addClass('error');
+						error = true;
+					}
 				});
 
 				if( !error ) {
@@ -358,12 +355,10 @@
 					});
 					form.addClass('success-form');
 					form[0].reset();
-					setTimeout(function() {
-						$('.registration-form').removeClass('active');
-					}, 2000);
 				}
 				event.preventDefault();
 			});
+
 		},
 		Contact: function() {
 			
@@ -386,7 +381,7 @@
 						$(this).addClass('error');
 						error = true;
 					}
-					if( $(this).attr('name') === 'email' ) {
+					if( $(this).attr('name') === 'contact-email' ) {
 						var email = $(this).attr('type', 'email').val(),
 							Pattern = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 						if( !Pattern.test(email) ) {
@@ -394,8 +389,8 @@
 							error = true;
 						}
 					}
-					if( $('.captcha').val() != captcha_Equal ) {
-						$('.captcha').addClass('error');
+					if( form.find('.captcha').val() != captcha_Equal ) {
+						form.find('.captcha').addClass('error');
 						error = true;
 					}
 				});
@@ -425,10 +420,10 @@
 
 				required.removeClass('error');
 				required.each(function() {
-					var email = $(this).val(),
+					var email = that.val(),
 						Pattern = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 					if( !Pattern.test(email) ) {
-						$(this).addClass('error');
+						that.addClass('error');
 						error = true;
 					}
 				});
@@ -569,3 +564,16 @@
 	Initialize_Theme();
 
 })(jQuery);
+
+var renameProperty = function (obj, oldName, newName) {
+     // Do nothing if the names are the same
+     if (oldName == newName) {
+         return obj;
+     }
+    // Check for the old property name to avoid a ReferenceError in strict mode.
+    if (obj.hasOwnProperty(oldName)) {
+        obj[newName] = obj[oldName];
+        delete obj[oldName];
+    }
+    return obj;
+};
