@@ -4,7 +4,7 @@
 	require_once( '../config.php' );
 
 	// Check Mailchimp
-	if( !class_exists('Drewm_MailChimp') ) {
+	if( !class_exists('MailChimp') ) {
 	    require_once( 'mailchimp.php' );
 	}
 
@@ -30,5 +30,9 @@
 			exit;
 		}
 	}
+
+	echo $Mailchimp_API_Key;
+	echo " - ";
+	echo $Mailchimp_List_ID;
 
 ?>
