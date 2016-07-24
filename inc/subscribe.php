@@ -31,8 +31,6 @@
 		}
 	}
 
-	echo $Mailchimp_API_Key;
-	echo " - ";
-	echo $Mailchimp_List_ID;
+	echo "ok";
 
 ?>

@@ -41,7 +41,7 @@ $headers = array(
     'Content-Transfer-Encoding: 7bit',
     'Date: ' . date('r', $_SERVER['REQUEST_TIME']),
     'Message-ID: <' . $_SERVER['REQUEST_TIME'] . md5($_SERVER['REQUEST_TIME']) . '@' . $_SERVER['SERVER_NAME'] . '>',
-    'From: ' . mb_encode_mimeheader($NAME) . '" <' . $TO_EMAIL . '>',
+    'From: ' . mb_encode_mimeheader($NAME) . ' <' . $TO_EMAIL . '>',
     'Reply-To: ' . $EMAIL,
     'X-Mailer: PHP v' . phpversion(),
     'X-Originating-IP: ' . $_SERVER['SERVER_ADDR'],
