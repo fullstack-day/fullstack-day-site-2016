@@ -195,6 +195,7 @@
 		if( COUNTDOWN.length ) {
 			var date = COUNTDOWN.attr('data-end'),
 				seconds = COUNTDOWN.attr('data-seconds'),
+				lang = COUNTDOWN.attr('data-lang'),
 				Have_Seconds;
 
 			COUNTDOWN.countdown({
@@ -202,12 +203,17 @@
 				render: function(date) {
 
 					if( seconds === 'true' ) {
-						Have_Seconds = '<span>' + (this.leadingZeros(date.sec)) + '<span>Seg</span></span>';
+						Have_Seconds = (lang === 'es')? '<span>' + (this.leadingZeros(date.sec)) + '<span>Seg</span></span>' : '<span>' + (this.leadingZeros(date.sec)) + '<span>Sec</span></span>';
 					}
 					else {
 						Have_Seconds = '';
 					}
-					return $(this.el).html('<span>' + date.days + '<span>D&iacute;as</span></span><span>' + (this.leadingZeros(date.hours)) + '<span>Horas</span></span><span>' + (this.leadingZeros(date.min)) + '<span>Min</span></span>' + Have_Seconds);
+
+					if (lang === 'es') {
+						return $(this.el).html('<span>' + date.days + '<span>D&iacute;as</span></span><span>' + (this.leadingZeros(date.hours)) + '<span>Horas</span></span><span>' + (this.leadingZeros(date.min)) + '<span>Min</span></span>' + Have_Seconds);
+					}
+
+					return $(this.el).html('<span>' + date.days + '<span>Days</span></span><span>' + (this.leadingZeros(date.hours)) + '<span>Hours</span></span><span>' + (this.leadingZeros(date.min)) + '<span>Min</span></span>' + Have_Seconds);
 				}
 			});
 		}
