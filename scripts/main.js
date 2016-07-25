@@ -349,7 +349,7 @@
 
 				if( !error ) {
 					$.ajax({
-					  url: 'inc/registration.php',
+					  url: '/inc/registration.php',
 					  type: 'post',
 					  data: Serialize_Form
 					});
@@ -397,7 +397,7 @@
 
 				if( !error ) {
 					$.ajax({
-					  url: 'inc/contact.php',
+					  url: '/inc/contact.php',
 					  type: 'post',
 					  data: Serialize_Form
 					});
@@ -430,7 +430,7 @@
 
 				if( !error ) {
 					$.ajax({
-					  url: 'inc/subscribe.php',
+					  url: '/inc/subscribe.php',
 					  type: 'post',
 					  data: Serialize_Form
 					});

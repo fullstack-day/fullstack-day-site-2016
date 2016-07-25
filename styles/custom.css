@@ -36,6 +36,22 @@ input, textarea, select, label, small {
 }
 */
 
+.lang {
+  position: fixed;
+  left: 50%;
+  margin-left: -36px;
+  top: 0px;
+  z-index: 3;
+  width: 72px;
+  height: 44px;
+  font-size: 20px;
+  background: transparent;
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  padding: 11px 12px;
+}
+
 .content-section .slide .slide-content h1 img {
   max-width: 100%;
 }
