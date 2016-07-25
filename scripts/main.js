@@ -314,10 +314,10 @@
 	Forms = {
 		Registration: function() {
 			
-			$('form.registration-form button[type="submit"]').on('click', function(event) {
+			$('#registrationForm button[type="submit"]').on('click', function(event) {
 
 				var that = $(this),
-					form = $('form.registration-form'),
+					form = $('#registrationForm'),
 					error = false,
 					Serialize_Form = that.parents('form').serialize(),
 					required = form.find('.required'),
@@ -362,10 +362,10 @@
 		},
 		Contact: function() {
 			
-			$('form.contact-form button[type="submit"]').on('click', function(event) {
+			$('#contactForm button[type="submit"]').on('click', function(event) {
 
 				var that = $(this),
-					form = $('form.contact-form'),
+					form = $('#contactForm'),
 					error = false,
 					Serialize_Form = that.parents('form').serialize(),
 					required = form.find('.required'),

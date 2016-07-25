@@ -33,7 +33,7 @@ if( !filter_var($EMAIL, FILTER_VALIDATE_EMAIL) ) {
     die($output);
 }
 
-$body = 'Name: ' . $NAME . "\n\n" . 'Email address: ' . $EMAIL . "\n\n" . 'Subject: ' . $SUBJECT_FORM . "\n\n" . 'Message: ' . $MESSAGE;
+$body = '---REGISTRATION---' . "\n\n" . 'Name: ' . $NAME . "\n\n" . 'Email address: ' . $EMAIL . "\n\n" . 'Subject: ' . $SUBJECT_FORM . "\n\n" . 'Message: ' . $MESSAGE;
 
 $headers = array(
     'MIME-Version: 1.0',
@@ -41,7 +41,7 @@ $headers = array(
     'Content-Transfer-Encoding: 7bit',
     'Date: ' . date('r', $_SERVER['REQUEST_TIME']),
     'Message-ID: <' . $_SERVER['REQUEST_TIME'] . md5($_SERVER['REQUEST_TIME']) . '@' . $_SERVER['SERVER_NAME'] . '>',
-    'From: ' . mb_encode_mimeheader($NAME) . '" <' . $TO_EMAIL . '>',
+    'From: ' . mb_encode_mimeheader($NAME) . ' <' . $TO_EMAIL . '>',
     'Reply-To: ' . $EMAIL,
     'X-Mailer: PHP v' . phpversion(),
     'X-Originating-IP: ' . $_SERVER['SERVER_ADDR'],
