@@ -31,4 +31,7 @@ $Email_Address = 'info@ticowebmedia.cr';
 
 // Subject for Contact Form
 $Contact_Form_Subject = 'Fullstack Day Contact Form';
+
+// Subject for Registration Form
+$Registration_Form_Subject = 'Fullstack Day Registration Form';
 ?>

@@ -8,7 +8,7 @@ $TO_EMAIL = $Email_Address;
 
 
 // Subject for emails
-$SUBJECT = $Contact_Form_Subject;
+$SUBJECT = $Registration_Form_Subject;
 
 
 if( !isset($_POST['registration-name']) || !isset($_POST['registration-email']) || !isset($_POST['registration-message']) ) {
