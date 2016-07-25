@@ -547,7 +547,7 @@
 				marker:{
 					latLng: Coordinates,
 					options:{
-						icon: 'images/map-marker.png'
+						icon: '/images/map-marker.png'
 					},
 					events:{
 						click: function(marker, event, context) {
@@ -556,10 +556,10 @@
   						win.focus();
 						},
 						mouseover: function(marker, event, context) {
-							marker.setIcon('images/map-marker-hover.png');
+							marker.setIcon('/images/map-marker-hover.png');
 						},
 						mouseout: function(marker, event, context) {
-							marker.setIcon('images/map-marker.png');
+							marker.setIcon('/images/map-marker.png');
 						}
 					}
 				}
