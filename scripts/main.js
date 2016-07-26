@@ -1,3 +1,15 @@
+var showPopup, 
+		hidePopup,
+		popup_text_success = {
+			'es': "Su mensaje ha sido enviado correctamente!",
+			'en': "Your message has been sent successfully!"
+		},
+		popup_text_error = {
+			'es': "Ha habido un error. Intente más tarde...",
+			'en': "There has been an error. Try again later..."
+		},
+		popup_timeout;
+
 (function($) {
 	'use strict';
 
@@ -22,6 +34,43 @@
 	   Initialize theme main functions
 	========================================================================== */
 	var Initialize_Theme = function() {
+		hidePopup = function() {
+			$(".popup-box-background").removeClass('show');
+			$(".popup-box").removeClass('show');
+
+			setTimeout(function(){
+				$(".popup-box-background").hide();
+				$(".popup-box").hide();
+			}, 1000);
+		};
+
+		showPopup = function(error) {
+			$(".popup-box-background").hide();
+			$(".popup-box").hide();
+
+			$(".popup-box-background").removeClass('show');
+			$(".popup-box").removeClass('show');
+			$(".popup-box").removeClass('popup-box-error');
+			$(".popup-box .Summit-text").html(popup_text_success[COUNTDOWN.attr('data-lang')]);
+
+			if (typeof(error) === 'undefined') error = false;
+
+			if (error) {
+				$(".popup-box").addClass('popup-box-error');
+				$(".popup-box .Summit-text").html(popup_text_error[COUNTDOWN.attr('data-lang')]);
+			}
+
+			$(".popup-box-background").show();
+			$(".popup-box").show();
+
+			setTimeout(function(){
+				$(".popup-box-background").addClass('show');
+				$(".popup-box").addClass('show');
+
+				popup_timeout = setTimeout(hidePopup, 3000);
+			}, 100);
+		};
+
 		Responsive_Options();
 		Loader();
 		Parallax();
@@ -357,7 +406,13 @@
 					$.ajax({
 					  url: '/inc/registration.php',
 					  type: 'post',
-					  data: Serialize_Form
+					  data: Serialize_Form,
+					  success: function() {
+					  	showPopup();
+					  },
+					  error: function() {
+					  	showPopup(true);
+					  }
 					});
 					form.addClass('success-form');
 					form[0].reset();
@@ -405,7 +460,13 @@
 					$.ajax({
 					  url: '/inc/contact.php',
 					  type: 'post',
-					  data: Serialize_Form
+					  data: Serialize_Form,
+					  success: function() {
+					  	showPopup();
+					  },
+					  error: function() {
+					  	showPopup(true);
+					  }
 					});
 					form.addClass('success-form');
 					form[0].reset();
@@ -438,7 +499,13 @@
 					$.ajax({
 					  url: '/inc/subscribe.php',
 					  type: 'post',
-					  data: Serialize_Form
+					  data: Serialize_Form,
+					  success: function() {
+					  	showPopup();
+					  },
+					  error: function() {
+					  	showPopup(true);
+					  }
 					});
 					form[0].reset();
 				}
