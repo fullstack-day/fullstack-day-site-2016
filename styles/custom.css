@@ -119,6 +119,10 @@ footer .logo img {
   width: 100%;
 }
 
+.__slackin {
+  z-index: 10;
+}
+
 
 /* 
   And some media queries for you

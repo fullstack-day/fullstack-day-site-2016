@@ -27,7 +27,7 @@ Contact Form
 ===================================================== */
 
 // Email address
-$Email_Address = 'info@ticowebmedia.cr';
+$Email_Address = 'info@fullstackday.io';
 
 // Subject for Contact Form
 $Contact_Form_Subject = 'Fullstack Day Contact Form';
